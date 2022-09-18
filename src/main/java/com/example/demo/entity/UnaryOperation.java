@@ -13,17 +13,18 @@ public class UnaryOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstNumber;
+    private String number;
 
     private String result;
 
+    @Enumerated(EnumType.STRING)
     private MathOperation mathOperation;
 
     public UnaryOperation() {
     }
 
-    public UnaryOperation(String firstNumber, MathOperation mathOperation) {
-        this.firstNumber = firstNumber;
+    public UnaryOperation(String number, MathOperation mathOperation) {
+        this.number = number;
         this.mathOperation = mathOperation;
     }
 }

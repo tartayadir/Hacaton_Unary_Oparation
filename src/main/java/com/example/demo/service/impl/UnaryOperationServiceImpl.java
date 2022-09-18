@@ -23,15 +23,15 @@ public class UnaryOperationServiceImpl implements UnaryOperationService {
     @Override
     public void saveEntity(UnaryOperation unaryOperation) {
 
-        unaryOperation.setFirstNumber(unaryOperation.getFirstNumber());
+        unaryOperation.setNumber(unaryOperation.getNumber());
         unaryOperationRepository.save(unaryOperation);
     }
 
     @Override
     public String calculateResult(UnaryOperation unaryOperation){
 
-        double number = Double.parseDouble(unaryOperation.getFirstNumber());
-        BigDecimal bigDecimal = new BigDecimal(number);
+        double number = Double.parseDouble(unaryOperation.getNumber());
+        BigDecimal bigDecimal = BigDecimal.valueOf(number);
         MathOperation mathOperation = unaryOperation.getMathOperation();
 
         BigDecimal result = switch (mathOperation){
@@ -71,7 +71,8 @@ public class UnaryOperationServiceImpl implements UnaryOperationService {
 
     @Override
     public BigDecimal numberDividedByOne(BigDecimal number) {
-        return BigDecimal.ONE.divide(number);
+
+        return BigDecimal.ONE.divide(number, mathContext);
     }
 
     @Override
