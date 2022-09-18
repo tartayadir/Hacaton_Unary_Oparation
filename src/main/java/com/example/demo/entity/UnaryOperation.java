@@ -13,7 +13,6 @@ public class UnaryOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String firstNumber;
 
     private String result;
@@ -27,5 +26,4 @@ public class UnaryOperation {
         this.firstNumber = firstNumber;
         this.mathOperation = mathOperation;
     }
-
 }

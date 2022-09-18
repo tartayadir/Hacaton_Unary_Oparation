@@ -17,12 +17,14 @@ public class UnaryOperationController {
     private final UnaryOperationService unaryOperationService;
 
     @GetMapping
-    public String m(@RequestParam("number1") String number1, String operation){
+    public String getResult(@RequestParam("number") String number, @RequestParam("operation") String operation){
 
         MathOperation mathOperation = MathOperation.getOperation(operation);
-        UnaryOperation binaryOperation = new UnaryOperation(number1, mathOperation);
-        unaryOperationService.saveEntity(binaryOperation);
+        UnaryOperation unaryOperation = new UnaryOperation(number, mathOperation);
 
-        return String.format("Sum = %d", binaryOperation.getResult());
+        String result = unaryOperationService.calculateResult(unaryOperation);
+        unaryOperationService.saveEntity(unaryOperation);
+
+        return result;
     }
 }
